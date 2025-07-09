@@ -35,13 +35,13 @@ public class SeedData
                 Title = faker.Lorem.Sentence(3).TrimEnd('.'),
                 Year = faker.Date.Past(30).Year,
                 Genre = faker.PickRandom("Action", "Drama", "Comedy", "Horror", "Sci-Fi", "Romance"),
-                DurationInMinutes = faker.Random.Int(80, 180),
+                DurationInMinutes = faker.Random.Int(60, 500),
 
                 MovieDetails = new MovieDetails
                 {
                     Synopsis = faker.Lorem.Paragraph(),
                     Language = faker.PickRandom("English", "French", "Spanish", "Swedish"),
-                    Budget = Math.Round(faker.Random.Decimal(100_000, 200_000_000), 2)
+                    Budget = Math.Round(faker.Random.Decimal(100_000, 200_000_000), 0)
                 },
 
                 Reviews = GenerateReviews(faker.Random.Int(1, 5)),
