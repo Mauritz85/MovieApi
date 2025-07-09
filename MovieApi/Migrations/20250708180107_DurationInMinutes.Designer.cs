@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieApi.Data;
 
@@ -10,9 +11,11 @@ using MovieApi.Data;
 namespace MovieApi.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20250708180107_DurationInMinutes")]
+    partial class DurationInMinutes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,16 +47,16 @@ namespace MovieApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BirthYear")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Actors");
+                    b.ToTable("Actor");
                 });
 
             modelBuilder.Entity("MovieApi.Models.Entities.Movie", b =>
@@ -80,7 +83,7 @@ namespace MovieApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movie");
                 });
 
             modelBuilder.Entity("MovieApi.Models.Entities.MovieDetails", b =>
@@ -131,7 +134,7 @@ namespace MovieApi.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Review");
                 });
 
             modelBuilder.Entity("ActorMovie", b =>

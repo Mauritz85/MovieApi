@@ -6,10 +6,12 @@ public class Movie
     public string Title { get; set; } = null!;
     public int Year { get; set; }
     public string Genre { get; set; } = null!;
-    public TimeSpan Duration { get; set; }
+    public int DurationInMinutes { get; set; }
+
 
     //Navigation properties
     public MovieDetails MovieDetails { get; set; } = null!;
     public ICollection<Review> Reviews { get; set; } = new List<Review>();
+    public ICollection<Actor> Actors { get; set; } = new List<Actor>();
 
 }

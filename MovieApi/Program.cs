@@ -1,16 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MovieApi.Data;
+using MovieApi.Extensions;
 
 namespace MovieApi
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
+            const string CONNECTION_STRING_NAME = "DefaultConnection";
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<Context>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("Context") ?? throw new InvalidOperationException("Connection string 'Context' not found.")));
+            builder.Services.AddDbContext<MovieDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString(CONNECTION_STRING_NAME) ?? throw new InvalidOperationException("Connection string 'Context' not found.")));
 
             // Add services to the container.
 
@@ -24,6 +26,7 @@ namespace MovieApi
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+                await app.SeedDataAsync();
             }
 
             app.UseHttpsRedirection();

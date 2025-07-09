@@ -7,9 +7,9 @@ using MovieApi.Models.Entities;
 
 namespace MovieApi.Data
 {
-    public class Context : DbContext
+    public class MovieDbContext : DbContext
     {
-        public Context (DbContextOptions<Context> options)
+        public MovieDbContext (DbContextOptions<MovieDbContext> options)
             : base(options)
         {
         }
@@ -20,6 +20,9 @@ namespace MovieApi.Data
                 .HasPrecision(18, 2);  
         }
 
-        public DbSet<MovieApi.Models.Entities.Movie> Movie { get; set; } = default!;
+        public DbSet<MovieApi.Models.Entities.Movie> Movies { get; set; } = default!;
+        public DbSet<MovieDetails> MovieDetails { get; set; } = default!;
+        public DbSet<Review> Reviews { get; set; } = default!;
+        public DbSet<Actor> Actors { get; set; } = default!;
     }
 }
