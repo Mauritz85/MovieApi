@@ -129,13 +129,10 @@ namespace MovieApi.Controllers
                 return NotFound();
             }
 
-            // Uppdatera filmen
             movie.Title = updateDto.Title;
             movie.Year = updateDto.Year;
             movie.Genre = updateDto.Genre;
             movie.DurationInMinutes = updateDto.DurationInMinutes;
-
-            // Uppdatera MovieDetails
             if (movie.MovieDetails is null)
             {
                 movie.MovieDetails = new MovieDetails
