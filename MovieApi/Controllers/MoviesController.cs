@@ -151,7 +151,7 @@ namespace MovieApi.Controllers
 
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return CreatedAtAction(nameof(MovieWithDetailsDto), new { id = movie.Id });
         }
 
 
@@ -192,7 +192,7 @@ namespace MovieApi.Controllers
 
             };
 
-            return CreatedAtAction("GetMovie", new { id = movie.Id }, movieWithDetailsDto);
+            return CreatedAtAction(nameof(GetMovieDetails), new { id = movie.Id }, movieWithDetailsDto);
         }
 
         // POST: /api/movies/{movieId}/actors/{actorId}
@@ -223,7 +223,7 @@ namespace MovieApi.Controllers
             movie.Actors.Add(actor);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return CreatedAtAction(nameof(GetMovieDetails), new { id = movie.Id });
         }
 
 
@@ -258,7 +258,7 @@ namespace MovieApi.Controllers
                 Comment = review.Comment
             };
 
-            return CreatedAtAction(nameof(GetMovie), new { id = movie.Id }, reviewDto );
+            return CreatedAtAction(nameof(GetMovieDetails), new { id = movie.Id }, reviewDto );
         }
 
         // DELETE: api/Movies/5
