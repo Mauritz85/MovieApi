@@ -24,5 +24,6 @@ namespace MovieApi.Data
         public DbSet<MovieDetails> MovieDetails { get; set; } = default!;
         public DbSet<Review> Reviews { get; set; } = default!;
         public DbSet<Actor> Actors { get; set; } = default!;
+
     }
 }

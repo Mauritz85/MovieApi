@@ -1,11 +1,11 @@
 ﻿namespace MovieApi.Models.DTOs;
 
-public class MovieDto
+public record MovieDto
 {
-    public int Id { get; set; }
-    public string Title { get; set; } = string.Empty;
-    public int Year { get; set; }
-    public string Genre { get; set; } = string.Empty;
-    public int DurationInMinutes { get; set; }
+    public int Id { get; init; }
+    public string Title { get; init; } = string.Empty;
+    public int Year { get; init; }
+    public string Genre { get; init; } = string.Empty;
+    public int DurationInMinutes { get; init; }
 
 }
